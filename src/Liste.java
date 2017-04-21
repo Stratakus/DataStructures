@@ -25,31 +25,20 @@ public class Liste extends Object {
 					current = current.getNext();
 				}
 			} while(current != null);
-
 		}
 	}
 	
-	public int get(int index) { // Hier das bleibt so! 
+	public int get(int index) {
 		Element current = start;
 		
 		if (index >= count) {
 			throw new IndexOutOfBoundsException("Index liegt ausserhalb des Bereichs!");
-		} else {
-			for (int i = 0; i < index; i++) {	
-				current = current.getNext();
-			}
-			//System.out.println("Element " + index + " enthällt Wert " + current.getWert() + ".");
-			return current.getWert();
 		}
-		
-		// Eingabe = 0 => Ergebnis = 5
-		// Eingabe = 1 => Ergebnis = 4
-		// Eingabe = 2 => Ergebnis = 8
-		// Eingabe = ... => Ergebnis = ...
-		
-		// Bei 3 => throw new IndexOutOfBoundsException();
-		
-	} // Das hier auch ;)
+		for (int i = 0; i < index; i++) {	
+			current = current.getNext();
+		}
+		return current.getWert();
+	}
 	
 	public void remove(int index) 
 	{
@@ -77,7 +66,7 @@ public class Liste extends Object {
 		int counter = 1;
 		Element current = start.getNext();
 		listeAlsString += start + "|";
-		do {
+		while (current != null) {
 			if (counter == 10) {
 				listeAlsString += "\n" + "|";
 				counter = 0;
@@ -86,8 +75,7 @@ public class Liste extends Object {
 				current = current.getNext();
 				counter++;
 			}
-		} while(current != null);
-		
+		}
 		return listeAlsString;
 	}
 }
